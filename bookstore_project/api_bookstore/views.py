@@ -51,7 +51,7 @@ def books_list(request):
 
     elif request.method == 'POST':
         data = JSONParser().parse(request)
-        serializer = AuthorSerializer(data=data)
+        serializer = BookSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
             return JsonResponse(serializer.data, status=201)
@@ -65,7 +65,7 @@ def book_detail(request, pk):
         return HttpResponse(status=404)
 
     if request.method == 'GET':
-        serializer = AuthorSerializer(book)
+        serializer = BookSerializer(book)
         return JsonResponse(serializer.data)
 
     elif request.method == 'PUT':
